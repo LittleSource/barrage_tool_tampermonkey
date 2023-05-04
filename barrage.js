@@ -144,12 +144,10 @@ function handleDouyinBarrage() {
 }
 
 (function () {
-    setInterval(() => {
-        const currUrl = window.location.href
-        platformMap.forEach((value, key) => {
-            if (currUrl.indexOf(key) !== -1) {
-                value();
-            }
-        })
-    }, TIME);
+    const currUrl = window.location.href
+    platformMap.forEach((value, key) => {
+        if (currUrl.indexOf(key) !== -1) {
+            setInterval(value, TIME);
+        }
+    })
 })();
