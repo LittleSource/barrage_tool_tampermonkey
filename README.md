@@ -5,7 +5,7 @@
 ## 安装
 
 1. 浏览器安装`Tampermonkey`插件
-2. 安装弹幕脚本 url TODO
+2. 安装弹幕脚本 [脚本地址](https://greasyfork.org/zh-CN/scripts/464652-%E5%BC%B9%E5%B9%95%E5%8A%A9%E6%89%8Bv2)
 3. 打开相应的直播间网页地址
 
 ## 如何获取直播间网页地址
