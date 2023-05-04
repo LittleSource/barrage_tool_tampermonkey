@@ -27,6 +27,22 @@ WS.onclose = function () {
     console.log('断开连接');
 };
 
+function handleRequest(username, content, id) {
+    // 构造弹幕数据对象
+    let data = {
+        nickname: username,
+        content: content
+    };
+
+    // 发送弹幕数据到WebSocket服务器
+    WS.send(JSON.stringify(data));
+
+    // 将已处理的弹幕ID添加到列表中
+    barrageIds.push(id);
+    if (barrageIds.length > 300) {
+        barrageIds.splice(0, 100);
+    }
+}
 
 function handleWeChatBarrage() {
     let barrageContainer = document.querySelector('#container-wrap > div.container-center > div > div > div > div.live-realtime-interactive-part > div:nth-child(3) > div.live-card-container-body > div > div.live-message-scroller-container > div > div.vue-recycle-scroller__item-wrapper');
@@ -52,27 +68,10 @@ function handleWeChatBarrage() {
         if (barrageIds.includes(id)) {
             continue;
         }
-        // 构造弹幕数据对象
-        let data = {
-            nickname: username,
-            content: content
-        };
-
-        // 发送弹幕数据到WebSocket服务器
-        console.log(data);
-        WS.send(JSON.stringify(data));
-
-        // 打印用户名和弹幕到控制台
-        console.log('Username:', username);
-        console.log('Message:', content);
-
-        // 将已处理的弹幕ID添加到列表中
-        barrageIds.push(id);
-        if (barrageIds.length > 300) {
-            barrageIds.splice(0, 100);
-        }
+        handleRequest(username, content, id);
     }
 }
+
 
 function handleDouyinBarrage() {
     let webcastChatroom = document.getElementsByClassName('webcast-chatroom___items')[0];
@@ -121,27 +120,10 @@ function handleDouyinBarrage() {
         if (content === '') {
             continue;
         }
-
-        // 构造弹幕数据对象
-        let data = {
-            nickname,
-            content
-        };
-
-        // 发送弹幕数据到WebSocket服务器
-        console.log(data);
-        WS.send(JSON.stringify(data));
-
-        // 将已处理的弹幕ID添加到列表中
-        barrageIds.push(id);
-        if (barrageIds.length > 300) {
-            barrageIds.splice(0, 100);
-        }
-
-        // 只处理最新的一条弹幕，处理完后跳出循环
-        break;
+        handleRequest(nickname, content, id);
     }
 }
+
 
 (function () {
     const currUrl = window.location.href
