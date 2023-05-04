@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         弹幕助手v2
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.3
 // @description  获取微信直播和抖音直播页面中的弹幕数据并发送到WebSocket服务器
 // @match        https://channels.weixin.qq.com/platform/live/liveBuild
 // @match        https://live.douyin.com/*
+// @icon         https://cdn.52ym.vip/temp/a0whr-l6z8y-001.ico
 // @grant        none
+// @license      MIT
 // ==/UserScript==
-
 
 const HOST = 'ws://127.0.0.1:5798/ws'; // WebSocket服务器地址
 const TIME = 3000; // 检查弹幕的时间间隔
@@ -34,6 +35,7 @@ function handleRequest(username, content, id) {
         content: content
     };
 
+    console.log(data);
     // 发送弹幕数据到WebSocket服务器
     WS.send(JSON.stringify(data));
 
