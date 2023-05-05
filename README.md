@@ -1,20 +1,25 @@
-# tampermonkey_barrage_tool
+# 微信直播工具获取弹幕助手
 
-获取弹幕助手(微信视频号+抖音)-油猴插件
+## pip加速
 
-## 安装
+`pip -v config list`如果没找到pip.ini文件，那么可以自己创建，步骤如下：
+在pip.ini中加入如下代码
 
-1. 浏览器安装`Tampermonkey`插件
-2. 安装弹幕脚本 [脚本地址](https://greasyfork.org/zh-CN/scripts/464652-%E5%BC%B9%E5%B9%95%E5%8A%A9%E6%89%8Bv2)
-3. 打开相应的直播间网页地址
+```shell
+[global]
+index-url=http://mirrors.aliyun.com/pypi/simple/
+[install]
+trusted-host=mirrors.aliyun.com
+```
 
-## 如何获取直播间网页地址
+查看是否配置成功
 
-### 抖音
+```shell
+pip -v config list
+```
 
-抖音直播间地址需要搜索或者在关注的列表中找到直播间url地址
+## 一次性安装requirements.txt里面所有的依赖包
 
-### 微信视频号
-
-1. 打开 <https://channels.weixin.qq.com/platform>
-2. 点击左侧的直播-直播管理-进入直播间(前提是先要在手机端或者pc端开播才能看见进入直播间按钮)
+```shell
+pip install -r requirements.txt
+```
